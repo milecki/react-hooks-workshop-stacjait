@@ -3,3 +3,17 @@
   max-width: 1200px;
   text-align: center;
 }
+
+button {
+  color: white;
+  background-color: royalblue;
+  border: none;
+  font-size: 20px;
+  margin: 4px;
+  padding: 6px 12px;
+}
+
+.counterValue {
+  color: red;
+  font-weight: bold;
+}

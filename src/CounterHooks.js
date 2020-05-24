@@ -19,7 +19,7 @@ function CounterHooks() {
   return (
     <div>
       <h2>Counter Hooks:</h2>
-      <div>{counterValue}</div>
+      <div class="counterValue">{counterValue}</div>
       <button onClick={incrementCounter}>+</button>
       <button onClick={resetCounter}>reset</button>
       <button onClick={decrementCounter}>-</button>
