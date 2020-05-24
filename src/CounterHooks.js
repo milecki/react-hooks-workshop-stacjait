@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useReducer } from 'react';
+
+function counterReducer(state, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    case 'RESET':
+      return 0;
+    default:
+      return 0;
+  }
+}
 
 function CounterHooks() {
-  const initialValue = 10;
-  const [counterValue, setCounterValue] = useState(initialValue);
-
-  const incrementCounter = () => {
-    setCounterValue(counterValue + 1);
-  };
-
-  const decrementCounter = () => {
-    setCounterValue(counterValue - 1);
-  };
-
-  const resetCounter = () => {
-    setCounterValue(initialValue);
-  };
-
-  useEffect(() => {
-    console.log('DID MOUNT / DID UPDATE (from Hooks)');
-
-    return () => {
-      console.log('WILL UNMOUNT (from Hooks)');
-    };
-  }, [counterValue]);
+  const [counterState, dispatch] = useReducer(counterReducer, 0);
 
   return (
     <div>
       <h2>Counter Hooks:</h2>
-      <div class="counterValue">{counterValue}</div>
-      <button onClick={incrementCounter}>+</button>
-      <button onClick={resetCounter}>reset</button>
-      <button onClick={decrementCounter}>-</button>
+
+      <div class="counterValue">{counterState}</div>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}>+</button>
+      <button onClick={() => dispatch({ type: 'RESET' })}>reset</button>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}>-</button>
     </div>
   );
 }
