@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function CounterHooks() {
   const initialValue = 10;
@@ -15,6 +15,14 @@ function CounterHooks() {
   const resetCounter = () => {
     setCounterValue(initialValue);
   };
+
+  useEffect(() => {
+    console.log('DID MOUNT / DID UPDATE (from Hooks)');
+
+    return () => {
+      console.log('WILL UNMOUNT (from Hooks)');
+    };
+  }, [counterValue]);
 
   return (
     <div>

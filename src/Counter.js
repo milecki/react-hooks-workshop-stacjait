@@ -9,18 +9,20 @@ class Counter extends Component {
       counter: this.state.counter + 1,
     });
 
-  componentDidMount() {
-    console.log('MOUNT');
-  }
+  // componentDidMount() {
+  //   console.log('MOUNT');
+  // }
 
-  componentDidUpdate() {
-    console.log('UPDATE');
-  }
+  // componentDidUpdate() {
+  //   console.log('UPDATE');
+  // }
 
-  componentWillUnmount() {}
+  // componentWillUnmount() {
+  //   console.log('WILL UNMOUNT');
+  // }
 
   render() {
-    console.log('RENDER');
+    // console.log('RENDER');
     return (
       <div>
         <h2>Counter:</h2>
