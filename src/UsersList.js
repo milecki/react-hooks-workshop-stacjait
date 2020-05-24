@@ -1,34 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
+
+const INITIAL_STATE = {
+  data: [],
+  isLoading: false,
+  isError: false,
+};
+
+function usersReducer(state, action) {
+  switch (action.type) {
+    case 'USERS_LOADING':
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'USERS_ERROR':
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    case 'USERS_SUCCESS':
+      return {
+        isLoading: false,
+        isError: false,
+        data: [...action.data],
+      };
+  }
+}
 
 function UsersList() {
-  const [usersData, setUsers] = useState([]);
-  const [usersLoading, setUsersLoading] = useState(false);
-  const [usersError, setUsersError] = useState(false);
+  const [usersState, dispatch] = useReducer(usersReducer, INITIAL_STATE);
 
   useEffect(() => {
-    setUsersLoading(true);
+    dispatch({ type: 'USERS_LOADING' });
     fetch('http://jsonplaceholder.typicode.com/users')
       .then((res) => res.json())
       .then((json) =>
         setTimeout(() => {
-          setUsersLoading(false);
-          setUsers(json);
+          dispatch({ type: 'USERS_SUCCESS', data: json });
         }, 3000)
       )
       .catch((err) => {
-        setUsersLoading(false);
-        setUsersError(true);
+        dispatch({ type: 'USERS_ERROR' });
       });
   }, []);
 
-  const renderUsers = () => usersData.map((user) => <div>{user.name}</div>);
+  const renderUsers = () =>
+    usersState.data.map((user) => <div>{user.name}</div>);
 
   return (
     <>
       <h2>Użytkownicy</h2>
-      {usersLoading && <div> Ładowanie danych</div>}
+      {usersState.isLoading && <div> Ładowanie danych</div>}
       {renderUsers()}
-      {usersError && <div>Błąd pobierania danych</div>}
+      {usersState.isError && <div>Błąd pobierania danych</div>}
     </>
   );
 }
