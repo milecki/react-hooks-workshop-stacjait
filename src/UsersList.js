@@ -1,5 +1,6 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useContext } from 'react';
 import usersReducer from './UsersReducer';
+import { UserContext } from './App';
 
 const INITIAL_STATE = {
   data: [],
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
 
 function UsersList() {
   const [usersState, dispatch] = useReducer(usersReducer, INITIAL_STATE);
+  const userEmail = useContext(UserContext);
 
   useEffect(() => {
     dispatch({ type: 'USERS_LOADING' });
@@ -33,6 +35,8 @@ function UsersList() {
       {usersState.isLoading && <div> Ładowanie danych</div>}
       {renderUsers()}
       {usersState.isError && <div>Błąd pobierania danych</div>}
+      <div>Obecny użytkownik: {userEmail.userEmail}</div>
+      <button onClick={userEmail.login}>LOGUJ</button>
     </>
   );
 }
