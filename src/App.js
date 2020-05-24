@@ -5,6 +5,7 @@ import Header from './Header';
 import Counter from './Counter';
 import CounterHooks from './CounterHooks';
 import WindowResize from './WindowResize';
+import UsersList from './UsersList';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Counter />
       <CounterHooks />
       <WindowResize />
+      <UsersList />
     </div>
   );
 }
