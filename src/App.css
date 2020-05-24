@@ -1,3 +1,20 @@
+body {
+  height: 10000px;
+}
+
+.headerFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: pink;
+}
+
+.headerNormal {
+  position: relative;
+  color: green;
+}
+
 .App {
   margin: 0 auto;
   max-width: 1200px;

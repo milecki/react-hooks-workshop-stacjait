@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Header from './Header';
 import Counter from './Counter';
 import CounterHooks from './CounterHooks';
 import WindowResize from './WindowResize';
@@ -7,7 +8,7 @@ import WindowResize from './WindowResize';
 function App() {
   return (
     <div className="App">
-      <h1>Blog Michała - warsztat React Hooks</h1>
+      <Header />
       <Counter />
       <CounterHooks />
       <WindowResize />
