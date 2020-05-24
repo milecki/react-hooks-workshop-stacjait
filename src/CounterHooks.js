@@ -1,37 +1,21 @@
-import React, { useReducer } from 'react';
-
-function counterReducer(state, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return {
-        value: state.value + 1,
-      };
-    case 'DECREMENT':
-      return {
-        value: state.value - 1,
-      };
-    case 'RESET':
-      return {
-        value: 0,
-      };
-    default:
-      return {
-        value: 0,
-      };
-  }
-}
+import React, { useContext } from 'react';
+import { CounterContext } from './App';
 
 function CounterHooks() {
-  const [counterState, dispatch] = useReducer(counterReducer, { value: 0 });
+  const {
+    counterValue,
+    incrementCounter,
+    decrementCounter,
+    resetCounter,
+  } = useContext(CounterContext);
 
   return (
     <div>
       <h2>Counter Hooks:</h2>
-
-      <div class="counterValue">{counterState.value}</div>
-      <button onClick={() => dispatch({ type: 'INCREMENT' })}>+</button>
-      <button onClick={() => dispatch({ type: 'RESET' })}>reset</button>
-      <button onClick={() => dispatch({ type: 'DECREMENT' })}>-</button>
+      <div class="counterValue">{counterValue}</div>
+      <button onClick={incrementCounter}>+</button>
+      <button onClick={resetCounter}>reset</button>
+      <button onClick={decrementCounter}>-</button>
     </div>
   );
 }
