@@ -1,34 +1,11 @@
 import React, { useReducer, useEffect } from 'react';
+import usersReducer from './UsersReducer';
 
 const INITIAL_STATE = {
   data: [],
   isLoading: false,
   isError: false,
 };
-
-function usersReducer(state, action) {
-  switch (action.type) {
-    case 'USERS_LOADING':
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case 'USERS_ERROR':
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-      };
-    case 'USERS_SUCCESS':
-      return {
-        isLoading: false,
-        isError: false,
-        data: [...action.data],
-      };
-    default:
-      return state;
-  }
-}
 
 function UsersList() {
   const [usersState, dispatch] = useReducer(usersReducer, INITIAL_STATE);
