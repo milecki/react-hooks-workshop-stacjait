@@ -25,6 +25,8 @@ function usersReducer(state, action) {
         isError: false,
         data: [...action.data],
       };
+    default:
+      return state;
   }
 }
 
